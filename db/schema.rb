@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_25_100831) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_07_112852) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "department_employees", force: :cascade do |t|
+    t.bigint "department_id", null: false
+    t.bigint "user_id", null: false
+    t.string "designation"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_department_employees_on_department_id"
+    t.index ["user_id"], name: "index_department_employees_on_user_id"
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "employees_count", default: 0
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_departments_on_organization_id"
+  end
 
   create_table "organizations", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +61,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_25_100831) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -52,5 +74,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_25_100831) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "department_employees", "departments"
+  add_foreign_key "department_employees", "users"
+  add_foreign_key "departments", "organizations"
   add_foreign_key "organizations", "users", column: "admin_user_id"
 end

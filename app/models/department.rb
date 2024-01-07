@@ -1,0 +1,9 @@
+class Department < ApplicationRecord
+  belongs_to :organization
+
+  validates :name, presence: true, uniqueness: true
+  validates :organization, :description, presence: true
+
+  has_many :department_employees, dependent: :destroy
+  has_many :employees, through: :department_employees, source: :user
+end

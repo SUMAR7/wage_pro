@@ -4,6 +4,8 @@ class Organization < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validate :admin_user_must_be_admin
 
+  has_many :departments, dependent: :destroy
+
   private
 
   def admin_user_must_be_admin

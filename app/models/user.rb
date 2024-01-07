@@ -7,4 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :organizations, foreign_key: 'admin_user_id', dependent: :destroy
+
+  has_many :department_employees, dependent: :destroy
+  has_many :departments, through: :department_employees
 end
