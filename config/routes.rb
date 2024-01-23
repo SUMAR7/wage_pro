@@ -10,6 +10,13 @@ Rails.application.routes.draw do
 
   resources :profile, only: [:show]
 
+  # namespace is used to group api controllers
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :organizations, only: [:index]
+    end
+  end
+
   # Defines the root path route ("/")
   root "home#index"
 end

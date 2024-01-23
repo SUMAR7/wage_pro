@@ -20,7 +20,8 @@ Ruby enVironment Manager 1.29.12 (latest) (c) 2009-2020 Michal Papis, Piotr Kucz
                                          DELETE /users(.:format)                                                                                  devise/registrations#destroy
                                          POST   /users(.:format)                                                                                  devise/registrations#create
                       rails_health_check GET    /up(.:format)                                                                                     rails/health#show
-                                    user GET    /users/:id(.:format)                                                                              users#show
+                                 profile GET    /profile/:id(.:format)                                                                            profile#show
+               api_v1_organization_index GET    /api/v1/organization(.:format)                                                                    api/v1/organization#index {:format=>:json}
                                     root GET    /                                                                                                 home#index
         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
         turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume

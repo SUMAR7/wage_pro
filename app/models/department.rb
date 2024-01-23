@@ -1,7 +1,7 @@
 class Department < ApplicationRecord
   belongs_to :organization
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true,  uniqueness: { scope: :organization_id }
   validates :organization, :description, presence: true
 
   has_many :department_employees, dependent: :destroy
