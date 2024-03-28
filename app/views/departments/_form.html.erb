@@ -1,0 +1,18 @@
+<%= form_for([@organization, @department], class: 'grid gap-2 sm:grid-cols-2 sm:gap-6' ) do |f| %>
+  <div class="field">
+    <%= f.label :name, class: 'form-label' %>
+    <%= f.text_field :name, autofocus: true, class: 'form-text-input', placeholder: "Finance", required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, class: 'form-label' %>
+    <%= f.text_field :description, autofocus: true, class: 'form-text-input', placeholder: "Driving innovation, for better tomorrow.", required: true %>
+  </div>
+
+  <div class="field">
+    <div class="actions mt-8">
+      <%= f.submit "Save", class: 'button-primary mr-4' %>
+      <%= link_to 'Cancel', organization_path(@organization), class: 'button-secondary' %>
+    </div>
+  </div>
+<% end %>

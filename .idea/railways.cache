@@ -1,51 +1,95 @@
 do /Users/sumar/projects/sumartech/wage_pro/bin/bundle exec /Users/sumar/.rvm/rubies/ruby-3.2.2/bin/ruby /Users/sumar/projects/sumartech/wage_pro/bin/rails routes --trace 
 Ruby enVironment Manager 1.29.12 (latest) (c) 2009-2020 Michal Papis, Piotr Kuczynski, Wayne E. Seguin
 
-                                  Prefix Verb   URI Pattern                                                                                       Controller#Action
-                            profile_show GET    /profile/show(.:format)                                                                           profile#show
-                              home_index GET    /home/index(.:format)                                                                             home#index
-                        new_user_session GET    /users/sign_in(.:format)                                                                          devise/sessions#new
-                            user_session POST   /users/sign_in(.:format)                                                                          devise/sessions#create
-                    destroy_user_session DELETE /users/sign_out(.:format)                                                                         devise/sessions#destroy
-                       new_user_password GET    /users/password/new(.:format)                                                                     devise/passwords#new
-                      edit_user_password GET    /users/password/edit(.:format)                                                                    devise/passwords#edit
-                           user_password PATCH  /users/password(.:format)                                                                         devise/passwords#update
-                                         PUT    /users/password(.:format)                                                                         devise/passwords#update
-                                         POST   /users/password(.:format)                                                                         devise/passwords#create
-                cancel_user_registration GET    /users/cancel(.:format)                                                                           devise/registrations#cancel
-                   new_user_registration GET    /users/sign_up(.:format)                                                                          devise/registrations#new
-                  edit_user_registration GET    /users/edit(.:format)                                                                             devise/registrations#edit
-                       user_registration PATCH  /users(.:format)                                                                                  devise/registrations#update
-                                         PUT    /users(.:format)                                                                                  devise/registrations#update
-                                         DELETE /users(.:format)                                                                                  devise/registrations#destroy
-                                         POST   /users(.:format)                                                                                  devise/registrations#create
-                      rails_health_check GET    /up(.:format)                                                                                     rails/health#show
-                                 profile GET    /profile/:id(.:format)                                                                            profile#show
-               api_v1_organization_index GET    /api/v1/organization(.:format)                                                                    api/v1/organization#index {:format=>:json}
-                                    root GET    /                                                                                                 home#index
-        turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
-        turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
-       turbo_refresh_historical_location GET    /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh
-           rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                           action_mailbox/ingresses/postmark/inbound_emails#create
-              rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                              action_mailbox/ingresses/relay/inbound_emails#create
-           rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                           action_mailbox/ingresses/sendgrid/inbound_emails#create
-     rails_mandrill_inbound_health_check GET    /rails/action_mailbox/mandrill/inbound_emails(.:format)                                           action_mailbox/ingresses/mandrill/inbound_emails#health_check
-           rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                           action_mailbox/ingresses/mandrill/inbound_emails#create
-            rails_mailgun_inbound_emails POST   /rails/action_mailbox/mailgun/inbound_emails/mime(.:format)                                       action_mailbox/ingresses/mailgun/inbound_emails#create
-          rails_conductor_inbound_emails GET    /rails/conductor/action_mailbox/inbound_emails(.:format)                                          rails/conductor/action_mailbox/inbound_emails#index
-                                         POST   /rails/conductor/action_mailbox/inbound_emails(.:format)                                          rails/conductor/action_mailbox/inbound_emails#create
-       new_rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/new(.:format)                                      rails/conductor/action_mailbox/inbound_emails#new
-           rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                                      rails/conductor/action_mailbox/inbound_emails#show
-new_rails_conductor_inbound_email_source GET    /rails/conductor/action_mailbox/inbound_emails/sources/new(.:format)                              rails/conductor/action_mailbox/inbound_emails/sources#new
-   rails_conductor_inbound_email_sources POST   /rails/conductor/action_mailbox/inbound_emails/sources(.:format)                                  rails/conductor/action_mailbox/inbound_emails/sources#create
-   rails_conductor_inbound_email_reroute POST   /rails/conductor/action_mailbox/:inbound_email_id/reroute(.:format)                               rails/conductor/action_mailbox/reroutes#create
-rails_conductor_inbound_email_incinerate POST   /rails/conductor/action_mailbox/:inbound_email_id/incinerate(.:format)                            rails/conductor/action_mailbox/incinerates#create
-                      rails_service_blob GET    /rails/active_storage/blobs/redirect/:signed_id/*filename(.:format)                               active_storage/blobs/redirect#show
-                rails_service_blob_proxy GET    /rails/active_storage/blobs/proxy/:signed_id/*filename(.:format)                                  active_storage/blobs/proxy#show
-                                         GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                                        active_storage/blobs/redirect#show
-               rails_blob_representation GET    /rails/active_storage/representations/redirect/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations/redirect#show
-         rails_blob_representation_proxy GET    /rails/active_storage/representations/proxy/:signed_blob_id/:variation_key/*filename(.:format)    active_storage/representations/proxy#show
-                                         GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format)          active_storage/representations/redirect#show
-                      rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                                       active_storage/disk#show
-               update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                               active_storage/disk#update
-                    rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                                    active_storage/direct_uploads#create
+                                          Prefix Verb   URI Pattern                                                                                        Controller#Action
+                                      home_index GET    /home/index(.:format)                                                                              home#index
+                                new_user_session GET    /users/sign_in(.:format)                                                                           devise/sessions#new
+                                    user_session POST   /users/sign_in(.:format)                                                                           devise/sessions#create
+                            destroy_user_session DELETE /users/sign_out(.:format)                                                                          devise/sessions#destroy
+                               new_user_password GET    /users/password/new(.:format)                                                                      devise/passwords#new
+                              edit_user_password GET    /users/password/edit(.:format)                                                                     devise/passwords#edit
+                                   user_password PATCH  /users/password(.:format)                                                                          devise/passwords#update
+                                                 PUT    /users/password(.:format)                                                                          devise/passwords#update
+                                                 POST   /users/password(.:format)                                                                          devise/passwords#create
+                        cancel_user_registration GET    /users/cancel(.:format)                                                                            devise/registrations#cancel
+                           new_user_registration GET    /users/sign_up(.:format)                                                                           devise/registrations#new
+                          edit_user_registration GET    /users/edit(.:format)                                                                              devise/registrations#edit
+                               user_registration PATCH  /users(.:format)                                                                                   devise/registrations#update
+                                                 PUT    /users(.:format)                                                                                   devise/registrations#update
+                                                 DELETE /users(.:format)                                                                                   devise/registrations#destroy
+                                                 POST   /users(.:format)                                                                                   devise/registrations#create
+                              rails_health_check GET    /up(.:format)                                                                                      rails/health#show
+                             new_profile_profile GET    /profile/:id/new_profile(.:format)                                                                 profile#new_profile
+                      create_new_profile_profile POST   /profile/:id/create_new_profile(.:format)                                                          profile#create_new_profile
+                          update_profile_profile PUT    /profile/:id/update_profile(.:format)                                                              profile#update_profile
+                                                 PATCH  /profile/:id/update_profile(.:format)                                                              profile#update_profile
+                            edit_profile_profile GET    /profile/:id/edit_profile(.:format)                                                                profile#edit_profile
+                                         profile GET    /profile/:id(.:format)                                                                             profile#show
+              organization_employee_salary_slips GET    /organizations/:organization_id/employees/:employee_id/salary_slips(.:format)                      salary_slips#index
+                                                 POST   /organizations/:organization_id/employees/:employee_id/salary_slips(.:format)                      salary_slips#create
+           new_organization_employee_salary_slip GET    /organizations/:organization_id/employees/:employee_id/salary_slips/new(.:format)                  salary_slips#new
+          edit_organization_employee_salary_slip GET    /organizations/:organization_id/employees/:employee_id/salary_slips/:id/edit(.:format)             salary_slips#edit
+               organization_employee_salary_slip GET    /organizations/:organization_id/employees/:employee_id/salary_slips/:id(.:format)                  salary_slips#show
+                                                 PATCH  /organizations/:organization_id/employees/:employee_id/salary_slips/:id(.:format)                  salary_slips#update
+                                                 PUT    /organizations/:organization_id/employees/:employee_id/salary_slips/:id(.:format)                  salary_slips#update
+                                                 DELETE /organizations/:organization_id/employees/:employee_id/salary_slips/:id(.:format)                  salary_slips#destroy
+    organization_department_department_employees GET    /organizations/:organization_id/departments/:department_id/department_employees(.:format)          department_employees#index
+                                                 POST   /organizations/:organization_id/departments/:department_id/department_employees(.:format)          department_employees#create
+ new_organization_department_department_employee GET    /organizations/:organization_id/departments/:department_id/department_employees/new(.:format)      department_employees#new
+edit_organization_department_department_employee GET    /organizations/:organization_id/departments/:department_id/department_employees/:id/edit(.:format) department_employees#edit
+     organization_department_department_employee GET    /organizations/:organization_id/departments/:department_id/department_employees/:id(.:format)      department_employees#show
+                                                 PATCH  /organizations/:organization_id/departments/:department_id/department_employees/:id(.:format)      department_employees#update
+                                                 PUT    /organizations/:organization_id/departments/:department_id/department_employees/:id(.:format)      department_employees#update
+                                                 DELETE /organizations/:organization_id/departments/:department_id/department_employees/:id(.:format)      department_employees#destroy
+                        organization_departments GET    /organizations/:organization_id/departments(.:format)                                              departments#index
+                                                 POST   /organizations/:organization_id/departments(.:format)                                              departments#create
+                     new_organization_department GET    /organizations/:organization_id/departments/new(.:format)                                          departments#new
+                    edit_organization_department GET    /organizations/:organization_id/departments/:id/edit(.:format)                                     departments#edit
+                         organization_department GET    /organizations/:organization_id/departments/:id(.:format)                                          departments#show
+                                                 PATCH  /organizations/:organization_id/departments/:id(.:format)                                          departments#update
+                                                 PUT    /organizations/:organization_id/departments/:id(.:format)                                          departments#update
+                                                 DELETE /organizations/:organization_id/departments/:id(.:format)                                          departments#destroy
+                                   organizations GET    /organizations(.:format)                                                                           organizations#index
+                                                 POST   /organizations(.:format)                                                                           organizations#create
+                                new_organization GET    /organizations/new(.:format)                                                                       organizations#new
+                               edit_organization GET    /organizations/:id/edit(.:format)                                                                  organizations#edit
+                                    organization GET    /organizations/:id(.:format)                                                                       organizations#show
+                                                 PATCH  /organizations/:id(.:format)                                                                       organizations#update
+                                                 PUT    /organizations/:id(.:format)                                                                       organizations#update
+                                                 DELETE /organizations/:id(.:format)                                                                       organizations#destroy
+                                       employees GET    /employees(.:format)                                                                               employees#index
+                                                 POST   /employees(.:format)                                                                               employees#create
+                                    new_employee GET    /employees/new(.:format)                                                                           employees#new
+                                   edit_employee GET    /employees/:id/edit(.:format)                                                                      employees#edit
+                                        employee GET    /employees/:id(.:format)                                                                           employees#show
+                                                 PATCH  /employees/:id(.:format)                                                                           employees#update
+                                                 PUT    /employees/:id(.:format)                                                                           employees#update
+                                                 DELETE /employees/:id(.:format)                                                                           employees#destroy
+                            api_v1_organizations GET    /api/v1/organizations(.:format)                                                                    api/v1/organizations#index {:format=>:json}
+                                            root GET    /                                                                                                  home#index
+                turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                              turbo/native/navigation#recede
+                turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                              turbo/native/navigation#resume
+               turbo_refresh_historical_location GET    /refresh_historical_location(.:format)                                                             turbo/native/navigation#refresh
+                   rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                            action_mailbox/ingresses/postmark/inbound_emails#create
+                      rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                               action_mailbox/ingresses/relay/inbound_emails#create
+                   rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                            action_mailbox/ingresses/sendgrid/inbound_emails#create
+             rails_mandrill_inbound_health_check GET    /rails/action_mailbox/mandrill/inbound_emails(.:format)                                            action_mailbox/ingresses/mandrill/inbound_emails#health_check
+                   rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                            action_mailbox/ingresses/mandrill/inbound_emails#create
+                    rails_mailgun_inbound_emails POST   /rails/action_mailbox/mailgun/inbound_emails/mime(.:format)                                        action_mailbox/ingresses/mailgun/inbound_emails#create
+                  rails_conductor_inbound_emails GET    /rails/conductor/action_mailbox/inbound_emails(.:format)                                           rails/conductor/action_mailbox/inbound_emails#index
+                                                 POST   /rails/conductor/action_mailbox/inbound_emails(.:format)                                           rails/conductor/action_mailbox/inbound_emails#create
+               new_rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/new(.:format)                                       rails/conductor/action_mailbox/inbound_emails#new
+                   rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                                       rails/conductor/action_mailbox/inbound_emails#show
+        new_rails_conductor_inbound_email_source GET    /rails/conductor/action_mailbox/inbound_emails/sources/new(.:format)                               rails/conductor/action_mailbox/inbound_emails/sources#new
+           rails_conductor_inbound_email_sources POST   /rails/conductor/action_mailbox/inbound_emails/sources(.:format)                                   rails/conductor/action_mailbox/inbound_emails/sources#create
+           rails_conductor_inbound_email_reroute POST   /rails/conductor/action_mailbox/:inbound_email_id/reroute(.:format)                                rails/conductor/action_mailbox/reroutes#create
+        rails_conductor_inbound_email_incinerate POST   /rails/conductor/action_mailbox/:inbound_email_id/incinerate(.:format)                             rails/conductor/action_mailbox/incinerates#create
+                              rails_service_blob GET    /rails/active_storage/blobs/redirect/:signed_id/*filename(.:format)                                active_storage/blobs/redirect#show
+                        rails_service_blob_proxy GET    /rails/active_storage/blobs/proxy/:signed_id/*filename(.:format)                                   active_storage/blobs/proxy#show
+                                                 GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                                         active_storage/blobs/redirect#show
+                       rails_blob_representation GET    /rails/active_storage/representations/redirect/:signed_blob_id/:variation_key/*filename(.:format)  active_storage/representations/redirect#show
+                 rails_blob_representation_proxy GET    /rails/active_storage/representations/proxy/:signed_blob_id/:variation_key/*filename(.:format)     active_storage/representations/proxy#show
+                                                 GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format)           active_storage/representations/redirect#show
+                              rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                                        active_storage/disk#show
+                       update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                                active_storage/disk#update
+                            rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                                     active_storage/direct_uploads#create

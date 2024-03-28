@@ -72,6 +72,21 @@ group :test do
   gem "selenium-webdriver"
 end
 
+# for authentication
 gem "devise", "~> 4.9"
 
+# for authorization
 gem "pundit", "~> 2.3"
+
+# for pagination functionality
+gem 'pagy', '~> 7.0'
+
+# for search functionality
+gem 'pg_search', '~> 2.3', '>= 2.3.6'
+
+# for scss support
+gem 'sass-rails', '~> 6.0'
+
+# Pdf Generation gems
+gem 'prawn'
+gem 'prawn-table'

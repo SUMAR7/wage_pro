@@ -1,0 +1,111 @@
+<%= form_for(@employee, class: 'grid gap-2 sm:grid-cols-2 sm:gap-6', url: @employee.persisted? ? employee_path(@employee) : employees_path ) do |f| %>
+  <div class="field">
+    <%= f.label :name, class: 'form-label' %>
+    <%= f.text_field :name, autofocus: true, class: 'form-text-input', placeholder: "Sajjad Umar", required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, class: 'form-label' %>
+    <%= f.text_field :email, autofocus: true, class: 'form-text-input', placeholder: "sumar@sumartech.com", required: true %>
+  </div>
+
+  <div class="field">
+    <h3 class="text-lg font-medium text-gray-900 dark:text-white">Select a global role</h3>
+    <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">Administrator and manager roles overrides the department roles.</p>
+    <ul class="grid w-full gap-6 md:grid-cols-2">
+      <li>
+        <input type="radio" id="g-admin-role" name="user[role]" value="admin" class="hidden peer" required <%= f.object.is_admin? ? 'checked' : '' %> >
+        <label for="g-admin-role" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+          <div class="block">
+            <div class="w-full text-lg font-semibold">Administrator</div>
+            <div class="w-full">Can view and manage all organizations.</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <input type="radio" id="g-manager-role" name="user[role]" value="manager" class="hidden peer" <%= f.object.is_manager? ? 'checked' : '' %>>
+        <label for="g-manager-role" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+          <div class="block">
+            <div class="w-full text-lg font-semibold">Organization Manager</div>
+            <div class="w-full">Can view and manage organizations they are part of.</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <input type="radio" id="g-employee-role" name="user[role]" value="employee" class="hidden peer" <%= (f.object.is_employee? || f.object.roles.empty?) ? 'checked' : '' %>>
+        <label for="g-employee-role" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+          <div class="block">
+            <div class="w-full text-lg font-semibold">Employee</div>
+            <div class="w-full">Can only manage their own profile, and the departments specified by department roles.</div>
+          </div>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <% unless @employee.persisted? %>
+    <div class="field">
+      <%= f.label :password, class: 'form-label' %>
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-text-input', placeholder: '••••••••', required: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, class: 'form-label' %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-text-input', placeholder: '••••••••', required: true %>
+    </div>
+
+    <%= f.fields_for :department_employees do |ff| %>
+      <div class="field">
+        <label for="user_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a department</label>
+        <select name='user[department_employees_attributes][0][department_id]' id="user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option>Select Department</option>
+          <% policy_scope(Department.includes(:organization).where(organization_id: policy_scope(Organization))).each do |department| %>
+            <option <%= ff.object.department_id == department.id ? 'selected' : '' %> value="<%= department.id %>"><%= "#{department.organization.name} - #{department.name}" %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class="field">
+        <%= ff.label :designation, class: 'form-label' %>
+        <%= ff.text_field :designation, autofocus: true, class: 'form-text-input', placeholder: "CEO", required: true %>
+      </div>
+
+      <div class="field">
+        <%= ff.label :description, class: 'form-label' %>
+        <%= ff.text_field :description, autofocus: true, class: 'form-text-input', placeholder: "Manages the entire organization", required: true %>
+      </div>
+
+      <div class="field">
+        <h3 class="text-lg font-medium text-gray-900 dark:text-white">Select a department role</h3>
+        <p class="mb-5 text-sm text-gray-500 dark:text-gray-400">Some global roles overrides department roles.</p>
+        <ul class="grid w-full gap-6 md:grid-cols-2">
+          <li>
+            <input type="radio" id="manager-role" name="user[department_employees_attributes][0][department_role]" value="manager" class="hidden peer" required <%= ff.object.is_manager? ? 'checked' : '' %>>
+            <label for="manager-role" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+              <div class="block">
+                <div class="w-full text-lg font-semibold">Manager</div>
+                <div class="w-full">Can view and manage all employees within department.</div>
+              </div>
+            </label>
+          </li>
+          <li>
+            <input type="radio" id="employee-role" name="user[department_employees_attributes][0][department_role]" value="employee" class="hidden peer" <%= (ff.object.is_employee? || ff.object.roles.empty?) ? 'checked' : '' %>>
+            <label for="employee-role" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+              <div class="block">
+                <div class="w-full text-lg font-semibold">Employee</div>
+                <div class="w-full">Can view and update their own profile information.</div>
+              </div>
+            </label>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="field">
+    <div class="actions mt-8">
+      <%= f.submit "Save", class: 'button-primary mr-4' %>
+      <%= link_to 'Cancel', employees_path, class: 'button-secondary' %>
+    </div>
+  </div>
+<% end %>

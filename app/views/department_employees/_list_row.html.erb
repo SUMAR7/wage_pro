@@ -1,0 +1,29 @@
+<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+  <td class="px-6 py-4">
+    <div class="text-base"><%= department_employee.user_id %></div>
+  </td>
+  <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+    <div>
+      <div class="text-base font-semibold"><%= department_employee.employee_name || 'N/A' %></div>
+    </div>
+  </th>
+  <td class="px-6 py-4">
+    <div class="text-base"><%= department_employee.employee_email %></div>
+  </td>
+  <td class="px-6 py-4">
+    <div class="text-base"><%= department_employee.designation %></div>
+  </td>
+  <td class="px-6 py-4">
+    <div class="flex items-center">
+      <%= link_to 'View', organization_department_department_employee_path(organization, department, department_employee), class: "py-2 px-3 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 mr-2" %>
+
+      <% if policy(department_employee).update? %>
+        <%= link_to 'Edit', edit_organization_department_department_employee_path(organization, department, department_employee), class: "py-2 px-3 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 mr-2" %>
+      <% end %>
+
+      <% if policy(department_employee).destroy? %>
+        <%= button_to 'Delete', organization_department_department_employee_path(organization, department, department_employee), method: :delete, data: { 'turbo-method': :delete, 'turbo-confirm': "Are you sure?"}, class: 'py-2 px-3 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800' %>
+      <% end %>
+    </div>
+  </td>
+</tr>

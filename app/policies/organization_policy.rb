@@ -12,7 +12,7 @@ class OrganizationPolicy < ApplicationPolicy
       else
         # If the user is not an admin, apply the non_admin_user_scope.
         non_admin_user_scope
-      end
+      end.distinct # distinct is used to remove duplicate records.
     end
 
     private
@@ -30,6 +30,29 @@ class OrganizationPolicy < ApplicationPolicy
       # based on the admin_user_id or the non-admin user scope.
       scope.joins(:departments).where(admin_user_id: user.id).or(non_admin_user_scope)
     end
+  end
+
+  def update?
+    # Check if the user is an admin or the owner of the organization.
+    user.has_role?(:admin) || record.admin_user_id == user.id
+  end
+
+  def create?
+    # Check if the user is an admin.
+    user.has_role?(:admin)
+  end
+
+  def new?
+    create?
+  end
+
+  def edit?
+    update?
+  end
+
+  def destroy?
+    # Check if the user is an admin or the owner of the organization.
+    user.has_role?(:admin) || record.admin_user_id == user.id
   end
 end
 
