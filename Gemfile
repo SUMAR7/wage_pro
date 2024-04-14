@@ -90,3 +90,6 @@ gem 'sass-rails', '~> 6.0'
 # Pdf Generation gems
 gem 'prawn'
 gem 'prawn-table'
+
+# DB-based queuing backend
+gem "solid_queue"

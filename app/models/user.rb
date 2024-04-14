@@ -27,8 +27,11 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :user_profile
 
   after_commit :assign_global_role
+  after_create :make_user_admin # make the first user an admin after signup
 
   pg_search_scope :search_by_name_or_email, against: [:name, :email], using: { tsearch: { prefix: true } }
+
+  private
 
   def assign_global_role
     if role.present? && !has_role?(role)
@@ -36,5 +39,9 @@ class User < ApplicationRecord
 
       add_role(:"#{role}")
     end
+  end
+
+  def make_user_admin
+    add_role(:admin) if roles.blank?
   end
 end
